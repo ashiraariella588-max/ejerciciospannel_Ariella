@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ariella · Ejercicios</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@1,700;1,800&family=DM+Mono:wght@400;500&family=Syne:wght@600;800&display=swap">
+<style>
+:root{--crim:#A2051D;--card:#E2C6CB;--ink:#3B5E20;--fld:#fff7f8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--card:#47692B;--ink:#E2C6CB;--fld:#2F4F1C}}
+:root[data-theme="dark"]{--card:#47692B;--ink:#E2C6CB;--fld:#2F4F1C}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:#3B5E20 radial-gradient(circle at 15% 0,#6F9A45,#3B5E20 65%);font:15px/1.5 'DM Sans',system-ui,sans-serif;color:#E2C6CB}
+.bg{position:fixed;inset:0;width:100%;height:100%;opacity:.35;pointer-events:none}
+.win{position:relative;max-width:1000px;margin:16px auto;border-radius:16px;overflow:hidden;background:rgba(42,70,22,.6);box-shadow:0 20px 60px #0008;border:2px solid #D5E49155}
+.tb{display:flex;gap:8px;align-items:center;padding:10px 14px;background:#2A4616;font:800 13px Syne,sans-serif;letter-spacing:.06em;color:#D5E491}
+.tb i{width:12px;height:12px;border-radius:50%;background:#E2C6CB}.tb i:nth-child(2){background:#D5E491}.tb i:nth-child(3){background:#A2051D}
+.tb span{margin-left:8px}
+.scr{padding:24px;min-height:72vh}
+.hide{display:none!important}
+h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:800;margin:0}
+.card{background:var(--card);color:var(--ink);border-radius:16px;padding:22px}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin:0 0 14px}
+label{display:flex;flex-direction:column;gap:4px;font-weight:700;font-size:13px;flex:1 1 150px}
+input,select{font:500 15px 'DM Sans',sans-serif;padding:10px 12px;border-radius:10px;border:2px solid #A2051D55;background:var(--fld);color:var(--ink);width:100%}
+input:focus,select:focus,.btn:focus-visible{outline:3px solid #A2051D;outline-offset:2px}
+.btn{background:var(--crim);color:#E2C6CB;border:0;border-radius:10px;padding:11px 18px;font:700 14px 'DM Sans',sans-serif;cursor:pointer;margin:0 8px 14px 0}
+.btn:hover{filter:brightness(1.2)}.btn:disabled{opacity:.5;cursor:default}
+.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--crim)}
+.out{background:#3B5E20;color:#D5E491;border:1px solid #D5E49166;border-radius:12px;padding:14px 16px;font:italic 800 20px 'Playfair Display',Georgia,serif;margin-top:6px;word-break:break-word}
+.chk{flex-direction:row;align-items:center;gap:8px;flex:0 0 auto}.chk input{width:auto;accent-color:#A2051D}
+.tiles{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}.tile{background:#3B5E20;color:#D5E491;border-radius:12px;padding:12px 20px;text-align:center;min-width:90px}.tile b{display:block;font:italic 800 30px 'Playfair Display',Georgia,serif;color:#E2C6CB}
+.lst{list-style:none;padding:0;margin:0 0 12px;max-height:230px;overflow:auto}.lst li{padding:9px 12px;border-radius:8px;cursor:pointer;border-bottom:1px solid #A2051D33}.lst li:hover{background:#A2051D18}
+.sel{background:#A2051D !important;color:#E2C6CB}
+.tw{overflow-x:auto;margin-bottom:12px}table{width:100%;border-collapse:collapse}th{background:#3B5E20;color:#D5E491;text-align:left;padding:9px 12px;font:700 13px Syne,sans-serif}td{padding:9px 12px;border-bottom:1px solid #A2051D33}tr[data-i]{cursor:pointer}
+.note{font-size:13px;opacity:.8}
+.bar{height:26px;border-radius:13px;background:#3B5E20;overflow:hidden;border:2px solid #3B5E20}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#D5E491,#A2051D)}
+.trk{position:relative;height:40px;font-size:30px}.trk span{position:absolute;left:0;bottom:0}
+.scr2{max-height:260px;overflow:auto;padding:12px 16px;border:2px solid var(--crim);border-radius:12px;background:var(--fld)}
+#bulb{display:block;margin:0 auto 10px}#bulb .glass{fill:#8c8f7e;transition:.3s}#bulb.lit .glass{fill:#FFD84A;filter:drop-shadow(0 0 16px #FFD84A)}#bulb .rays{opacity:0;transition:.3s}#bulb.lit .rays{opacity:1}
+.ac{background:#3B5E20;color:#D5E491;border-radius:16px;padding:18px;text-align:center;margin-bottom:14px;border:3px solid #D5E49133;transition:.3s}.ac span{display:block;font:italic 800 54px 'Playfair Display',Georgia,serif}.ac.lit{box-shadow:0 0 28px #D5E49177;border-color:#D5E491}
+.ov{position:absolute;inset:0;background:#000a;display:grid;place-items:center;z-index:9;padding:16px}.dlg{background:var(--card);color:var(--ink);padding:22px;border-radius:14px;max-width:340px;text-align:center;border:3px solid var(--crim)}.dlg p{margin:0 0 14px;font-weight:700}.dlg .btn{margin:0}
+/* login */
+#s-login{display:grid;place-items:center}.lg{width:min(380px,100%);text-align:center}.lg h1{font-size:30px;margin:6px 0 2px}.lg form{text-align:left;margin-top:16px}.lg .btn{width:100%;margin:6px 0 0}
+/* E2 */
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:26px;align-items:center}
+.hero h1{font-size:clamp(46px,9vw,84px);line-height:.95;color:#D5E491;letter-spacing:-.02em}
+.hero p{max-width:34ch}.logos{display:flex;gap:12px;margin:18px 0}
+.panel{background:rgba(40,66,22,.72);border:2px solid var(--crim);border-radius:16px;padding:22px;backdrop-filter:blur(6px);color:#E2C6CB}
+.panel h2{font-size:26px;padding-bottom:8px;border-bottom:4px solid var(--crim);margin-bottom:16px}
+.panel select{background:#fff7f8;color:#3B5E20}.panel .desc{min-height:48px;margin:0 0 14px;font-size:14px;color:#D5E491}
+.panel .btn,.hero .btn{margin:0}.hero .ghost{color:#E2C6CB;box-shadow:inset 0 0 0 2px #E2C6CB}
+.xh{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.xh h2{font-size:22px;color:#D5E491}.xh .btn{margin:0}
+/* ventana de ejercicio: floral duotono */
+.jf{--c1:#5B8CF7;--c2:#E5CCF5;--ink:#1B2A6B;border:3px solid var(--ink);border-radius:10px;overflow:hidden;box-shadow:0 14px 40px #0007;background:var(--c1)}
+.jt{display:flex;align-items:center;gap:8px;padding:7px 12px;background:var(--ink);color:var(--c2);font:600 13px Syne,sans-serif;letter-spacing:.04em}
+.wb{margin-left:auto;display:flex;gap:5px}.wb button{width:30px;height:22px;border:2px solid var(--c2);background:transparent;color:var(--c2);border-radius:11px;cursor:pointer;font-size:11px;padding:0}.wb #xc{background:var(--c2);color:var(--ink)}
+.jb{position:relative;padding:26px 18px 30px;min-height:380px}
+.fl{position:absolute;inset:0;width:100%;height:100%}
+.sheet{position:relative;max-width:760px;margin:0 auto;background:#fff9f2;color:var(--ink);border:3px solid var(--ink);border-radius:26px 6px 26px 6px;box-shadow:8px 8px 0 var(--ink);padding:22px;font:14px/1.5 'DM Mono',monospace}
+.sheet label{font:italic 600 15px 'Playfair Display',Georgia,serif;gap:5px}
+.sheet h4{font:italic 800 22px 'Playfair Display',Georgia,serif;margin-bottom:10px}
+.sheet input,.sheet select{border:2px solid var(--ink);border-radius:12px 3px 12px 3px;background:#fff;color:var(--ink);padding:8px 10px;font:500 14px 'DM Mono',monospace}
+.sheet input:focus,.sheet select:focus,.jf .btn:focus-visible{outline:3px solid var(--c1);outline-offset:2px}
+.sheet .chk input{accent-color:var(--ink);width:18px;height:18px}
+.jf .btn{background:var(--ink);color:var(--c2);border:2px solid var(--ink);border-radius:999px;padding:8px 22px;font:italic 800 16px 'Playfair Display',Georgia,serif}
+.jf .btn:hover{background:var(--c2);color:var(--ink);filter:none}
+.jf .ghost{background:transparent;color:var(--ink);box-shadow:none}.jf .ghost:hover{background:var(--c2)}
+.jf .out{background:var(--ink);color:var(--c2);border:0;border-radius:18px 4px 18px 4px;font:italic 800 22px 'Playfair Display',Georgia,serif;padding:14px 18px}
+.jf .tile{background:var(--c2);color:var(--ink);border:2px solid var(--ink);border-radius:18px 4px 18px 4px}.jf .tile b{color:var(--ink)}
+.jf .lst,.jf .tw,.jf .scr2{background:#fff;border:2px solid var(--ink);border-radius:14px 4px 14px 4px}
+.jf .lst li{border-bottom:1px dashed var(--ink)}
+.jf .sel{background:var(--ink)!important;color:var(--c2)}
+.jf th{background:var(--ink);color:var(--c2);font:500 12px 'DM Mono',monospace;letter-spacing:.04em;border:0}.jf td{border-bottom:1px dashed var(--ink)}
+.jf .bar{background:#fff;border:2px solid var(--ink);border-radius:999px;height:24px}.jf .bar i{background:repeating-linear-gradient(135deg,var(--c1) 0 10px,var(--c2) 10px 20px)}
+.jf .ac{background:var(--ink);color:var(--c2);border-color:var(--c2)}
+.jo{background:var(--ink);color:var(--c2);font:12px/1.5 'DM Mono',monospace;padding:7px 14px}
+.dlg{padding:0;overflow:hidden;border-radius:6px;background:#fff9f2;color:#3B5E20}.dlg p{padding:18px 20px 6px}.dlg .dh{background:#A2051D;color:#E2C6CB;padding:6px 10px;font:italic 700 15px 'Playfair Display',Georgia,serif;text-align:left}.dlg .btn{margin:0 0 16px}
+.big{font-size:34px;line-height:1.25;margin-bottom:2px;word-break:break-all}.ic{fill:var(--c2);stroke:var(--c2);stroke-width:3;stroke-linejoin:round;vertical-align:middle}
+.fan{display:inline-block;font-size:40px;opacity:.3;filter:grayscale(1)}.ac.lit .fan{opacity:1;filter:none;animation:sp 4s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+.trk{margin-right:36px}.trk .fin{left:auto;right:-36px}
+@media(max-width:720px){.hero{grid-template-columns:1fr}.scr{padding:16px}}
+@media(prefers-reduced-motion:reduce){.ac.lit .fan{animation:none}*{transition:none!important}}
+</style></head><body>
+<svg class="bg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="#D5E491"><ellipse cx="60" cy="430" rx="55" ry="210" transform="rotate(-28 60 430)"/><ellipse cx="760" cy="120" rx="50" ry="190" transform="rotate(30 760 120)"/><ellipse cx="700" cy="540" rx="48" ry="170" transform="rotate(-50 700 540)"/></g><path d="M0 0C90 90 120 200 60 330" stroke="#A2051D" stroke-width="10" fill="none"/><g fill="#E2C6CB"><ellipse cx="410" cy="40" rx="30" ry="62" transform="rotate(-20 410 40)"/><ellipse cx="450" cy="55" rx="26" ry="55" transform="rotate(25 450 55)"/></g></svg>
+<main class="win">
+<div class="tb"><i></i><i></i><i></i><span id="ttl"></span></div>
+
+<section class="scr" id="s-login"><div class="card lg">
+<svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#A2051D"/><circle cx="32" cy="24" r="10" fill="#E2C6CB"/><path d="M12 54c4-14 36-14 40 0" fill="#E2C6CB"/></svg>
+<h1>Hola, bienvenida</h1><div>Inicia sesión para ver tus ejercicios</div>
+<form id="lg"><div class="row"><label>Usuario<input id="u" autocomplete="username"></label></div><div class="row"><label>Contraseña<input id="p" type="password" autocomplete="current-password"></label></div><button class="btn">Ingresar</button></form>
+</div></section>
+
+<section class="scr hide" id="s-e2"><div class="hero"><div>
+<div class="logos"><svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="26" fill="#D5E491"/><path d="M27 10c14 6 14 28 0 34C13 38 13 16 27 10z" fill="#3B5E20"/></svg><svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="26" fill="#E2C6CB"/><path d="M27 12l5 10 11 1-8 8 2 11-10-6-10 6 2-11-8-8 11-1z" fill="#A2051D"/></svg></div>
+<h1>Ariella</h1><p>Mis prácticas de Java Swing, recreadas para abrir y usar aquí mismo.</p>
+<button class="btn ghost" id="bl">Bloquear</button></div>
+<div class="panel"><h2>Ejercicios</h2>
+<label for="sel">Elige un ejercicio<select id="sel"></select></label>
+<p class="desc" id="ds">Elige uno de la lista para ver de qué trata.</p>
+<button class="btn" id="ab">Abrir</button></div></div></section>
+
+<section class="scr hide" id="s-ex"><div class="jf"><div class="jt"><span aria-hidden="true">☕</span><b id="xt"></b><span class="wb"><button aria-label="Minimizar">–</button><button aria-label="Maximizar">▢</button><button id="xc" aria-label="Cerrar">✕</button></span></div><div class="jb"><svg class="fl" id="fl" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg><div class="sheet" id="xb"></div></div><div class="jo" id="xo"></div></div></section>
+</main>
+<script>
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const f2=n=>(Math.round(n*100)/100).toLocaleString('es-MX'),esc=s=>String(s).replace(/[&<>"]/g,c=>'&#'+c.charCodeAt(0)+';');
+let X,T;
+const ui=h=>X.innerHTML=h,q=s=>$(s,X),R=t=>q('#r').textContent=t,RI=(i,t)=>q('#r').innerHTML=`<div class="big">${i}</div>`+esc(t),on=(i,f)=>q('#'+i).onclick=f;
+const OUT='<div class="out" id="r">—</div>';
+const dos=(a='Número 1',b='Número 2')=>`<div class="row"><label>${a}<input id="a" type="number" step="any"></label><label>${b}<input id="b" type="number" step="any"></label></div>`;
+const IC={Sumar:'+',Restar:'−',Multiplicar:'×',Dividir:'÷',Suma:'+',Resta:'−',Multiplicación:'×',División:'÷'},PI={Efectivo:'💵',Tarjeta:'💳',Transferencia:'🏦'};
+const SH={Círculo:'<circle cx="30" cy="30" r="24"/>',Cuadrado:'<rect x="8" y="8" width="44" height="44"/>',Rectángulo:'<rect x="4" y="14" width="52" height="32"/>',Pentágono:'<path d="M30 5 56 24 46 54H14L4 24z"/>',Triángulo:'<path d="M30 6 56 52H4z"/>'},shp=k=>`<svg class="ic" viewBox="0 0 60 60" width="64" height="64">${SH[k]}</svg>`;
+const B=l=>l.map(k=>`<button class="btn" data-k="${k}">${IC[k]?IC[k]+' ':''}${k}</button>`).join(''),bt=f=>$$('[data-k]',X).forEach(b=>b.onclick=()=>f(b.dataset.k));
+const CK=l=>l.map(k=>`<label class="chk"><input type="checkbox" value="${k}">${IC[k]?IC[k]+' ':''}${k}</label>`).join('');
+const OPT=l=>l.map(k=>`<option>${k}</option>`).join('');
+function nums(){const a=parseFloat(q('#a').value),b=parseFloat(q('#b').value);if(isNaN(a)||isNaN(b)){msg('Escribe dos números válidos.');return null}return[a,b]}
+function msg(t){const o=document.createElement('div');o.className='ov';o.innerHTML='<div class="dlg"><div class="dh">Mensaje</div><p></p><button class="btn">Aceptar</button></div>';$('p',o).textContent=t;o.onclick=e=>{if(e.target===o||e.target.tagName=='BUTTON')o.remove()};$('.win').append(o);$('button',o).focus()}
+function go(n,t){['login','e2','ex'].forEach(k=>$('#s-'+k).classList.toggle('hide',k!=n));$('#ttl').textContent='E1_Ventana  ·  '+t}
+const AR={Círculo:a=>Math.PI*a*a,Cuadrado:a=>a*a,Rectángulo:(a,b)=>a*b,Pentágono:a=>1.7204774*a*a,Triángulo:(a,b)=>a*b/2};
+const PG={Efectivo:'Pagas en efectivo: 10 % de descuento.',Tarjeta:'Pago con tarjeta: sin comisión.',Transferencia:'Transferencia: confirma tu referencia en 24 h.'};
+const BULB=w=>`<svg id="bulb" viewBox="-20 -6 140 142" width="${w}"><g class="rays" stroke="#E8A800" stroke-width="5" stroke-linecap="round"><path d="M18 8l-9-9M82 8l9-9M0 38h-12M100 38h12M6 64l-9 6M94 64l9 6"/></g><path class="glass" stroke="var(--ink)" stroke-width="3" d="M50 8a32 32 0 0 0-18 58c4 4 6 8 6 14h24c0-6 2-10 6-14A32 32 0 0 0 50 8z"/><rect x="38" y="84" width="24" height="9" rx="3" fill="#A2051D"/><rect x="41" y="95" width="18" height="9" rx="3" fill="#3B5E20"/></svg>`;
+const foco=img=>()=>{ui(BULB(img?130:70)+'<button class="btn" id="t">💡 Encender</button>'+OUT);R('Foco apagado');let s=0;on('t',()=>{s=!s;q('#t').textContent=s?'Apagar':'💡 Encender';R('Foco '+(s?'encendido':'apagado'));q('#bulb').classList.toggle('lit',s)})};
+const barra=(ms,et,moto)=>()=>{ui((moto?'<div class="trk"><span id="mt">🏍️</span><span class="fin">🏁</span></div>':'')+'<div class="bar"><i id="f"></i></div><p><b id="pc">0%</b></p>'+OUT+'<button class="btn" id="go">Iniciar</button>');R('Listo para iniciar');on('go',()=>{clearInterval(T);let p=0;q('#go').disabled=1;T=setInterval(()=>{p++;q('#f').style.width=p+'%';q('#pc').textContent=p+'%';moto&&(q('#mt').style.cssText=`left:${p}%;transform:translateX(-${p}%) scaleX(-1)`);R(et.filter(e=>p>=e[0]).pop()[1]);if(p>=100){clearInterval(T);q('#go').disabled=0}},ms)})};
+function lista(c,fmt,o={}){
+ui(`<div class="row">${c.map(([l,t])=>`<label>${l}<input type="${t}" step="any"></label>`).join('')}</div><div class="row"><button class="btn" id="ad">Agregar</button><button class="btn ghost" id="el">Eliminar</button>${o.x?`<button class="btn ghost" id="ex">${o.x[0]}</button>`:''}</div><ul class="lst" id="l"></ul>`+OUT);
+let d=[],s=-1;const I=()=>$$('label input',X);
+const p=()=>{q('#l').innerHTML=d.map((v,i)=>`<li class="${i==s?'sel':''}" data-i="${i}">${esc(fmt(v))}</li>`).join('');$$('li',X).forEach(l=>l.onclick=()=>{s=+l.dataset.i;p()});R('Total: '+d.length)};
+on('ad',()=>{const v=I().map(n=>n.value.trim());if(v.some(z=>!z))return msg('Llena todos los campos.');const e=o.ok&&o.ok(v);if(e)return msg(e);d.push(v);I().forEach(n=>n.value='');s=-1;p()});
+on('el',()=>{if(s<0)return msg('Selecciona un elemento de la lista.');d.splice(s,1);s=-1;p()});
+o.x&&on('ex',()=>{const n=d.length;d=o.x[1](d);s=-1;p();msg('Se eliminaron '+(n-d.length)+' alumno(s).')});p()}
+function tabla(c,o={}){
+ui(`<div class="row">${c.map(([l,t])=>`<label>${l}<input type="${t}" step="any"></label>`).join('')}</div><div class="row"><button class="btn" id="ad">Agregar</button><button class="btn ghost" id="mo">Modificar</button><button class="btn ghost" id="el">Eliminar</button></div><div class="tw"><table><thead><tr>${c.map(([l])=>`<th>${l}</th>`).join('')}${o.calc?`<th>${o.calc[0]}</th>`:''}</tr></thead><tbody id="tb"></tbody></table></div>`+OUT+(o.note?`<p class="note">${o.note}</p>`:''));
+let d=o.seed||[],s=-1;const I=()=>$$('label input',X);
+const p=()=>{q('#tb').innerHTML=d.map((v,i)=>`<tr data-i="${i}" class="${i==s?'sel':''}">${v.map(z=>`<td>${esc(z)}</td>`).join('')}${o.calc?`<td>${esc(o.calc[1](v))}</td>`:''}</tr>`).join('');$$('tr[data-i]',X).forEach(r=>r.onclick=()=>{s=+r.dataset.i;I().forEach((n,j)=>n.value=d[s][j]);p()});R(o.tot?'Total a pagar: $'+f2(d.reduce((a,v)=>a+v[1]*v[2],0)):d.length+' renglón(es)')};
+const g=()=>{const v=I().map(n=>n.value.trim());if(v.some(z=>!z))return msg('Llena todos los campos.'),0;const e=o.ok&&o.ok(v);return e?(msg(e),0):v};
+on('ad',()=>{const v=g();if(v){d.push(v);I().forEach(n=>n.value='');s=-1;p()}});
+on('mo',()=>{if(s<0)return msg('Haz clic en un renglón primero.');const v=g();if(v){d[s]=v;s=-1;I().forEach(n=>n.value='');p()}});
+on('el',()=>{if(s<0)return msg('Haz clic en un renglón primero.');d.splice(s,1);s=-1;I().forEach(n=>n.value='');p()});p()}
+const pagoUI=sel=>()=>{ui(`<h4>Método de pago</h4><div class="row">${sel?`<label>Elige<select id="s"><option value="">— Elige —</option>${Object.keys(PG).map(k=>`<option value="${k}">${PI[k]} ${k}</option>`).join('')}</select></label>`:Object.keys(PG).map(k=>`<label class="chk"><input type="radio" name="p" value="${k}">${PI[k]} ${k}</label>`).join('')}</div>`+OUT);RI('🧾','Elige un método de pago');$$('input,select',X).forEach(i=>i.onchange=()=>RI(PI[i.value]||'🧾',PG[i.value]||'Elige un método de pago'))};
+const PAL=[['#5B8CF7','#E5CCF5','#1B2A6B','thaw','snowdrops'],['#85892F','#9DD9F7','#2B2E0C','first dip','tulips'],['#F3B3D0','#F58BA8','#7A1038','cherry bomb','cherry blossom'],['#E03A3E','#F4508C','#4A0716','apero hour','dahlias'],['#C9930C','#FDEE7A','#4A3300','golden hour','wheat'],['#E0603E','#F6A95A','#531A0A','spice rack','maple leaves']];
+function flora(k,c,sd){let s=sd*977+13;const r=()=>(s=s*16807%2147483647)/2147483647;let o=`<g fill="${c}" stroke="${c}" stroke-linecap="round">`;
+const n=[22,16,14,3,34,16][k];
+for(let i=0;i<n;i++){const x=r()*800,y=r()*500,a=r()*360;
+if(k==0)o+=`<path d="M${x} ${y+130}Q${x+20} ${y+40} ${x+8} ${y}" stroke-width="4" fill="none"/><ellipse cx="${x+8}" cy="${y+14}" rx="11" ry="22" transform="rotate(${a%50-25} ${x+8} ${y})"/>`;
+if(k==1)o+=`<path d="M${x} 520V${y+60}" stroke-width="5"/><path transform="translate(${x} ${y+60}) scale(1.5)" d="M-16-4Q-14 26 0 28Q14 26 16-4L8-16 0-4-8-16Z"/>`;
+if(k==2)for(let j=0;j<6;j++)o+=`<circle cx="${x+Math.cos(j*1.05)*26}" cy="${y+Math.sin(j*1.05)*26}" r="${20+r()*10}" stroke="none"/>`;
+if(k==3){const X=120+i*280,Y=150+r()*220;for(let g=0;g<3;g++)for(let j=0,m=10+g*6;j<m;j++)o+=`<ellipse cx="${X}" cy="${Y-25-g*28}" rx="${12+g*3}" ry="${22+g*5}" transform="rotate(${j/m*360+g*9} ${X} ${Y})" stroke="none"/>`}
+if(k==4)o+=`<path d="M${x} ${y}q50 -50 130 -70" stroke-width="${3+r()*7}" fill="none"/>`;
+if(k==5)o+=`<path transform="translate(${x} ${y}) rotate(${a}) scale(${1.6+r()*1.6})" d="M0-20L6-8 18-12 12 0 22 6 8 8 10 22 0 14-10 22-8 8-22 6-12 0-18-12-6-8Z" stroke="none"/><path d="M${x} ${y}q30 60 ${r()*80-40} 140" stroke-width="3" fill="none"/>`}
+return o+'</g>'}
+const EX=[
+{id:'E3_Suma',d:'Suma dos números escritos en cajas de texto.',f:()=>{ui(dos()+'<button class="btn" id="go">+ Sumar</button>'+OUT);on('go',()=>{const n=nums();n&&R(`${n[0]} + ${n[1]} = ${f2(n[0]+n[1])}`)})}},
+{id:'E4_Operaciones',d:'Suma, resta, multiplicación y división, un botón por operación.',f:()=>{ui(dos()+`<div class="row">${B(['Sumar','Restar','Multiplicar','Dividir'])}</div>`+OUT);bt(k=>{const n=nums();if(!n)return;const[a,b]=n;if(k=='Dividir'&&b==0)return msg('No se puede dividir entre 0.');R(f2({Sumar:a+b,Restar:a-b,Multiplicar:a*b,Dividir:a/b}[k]))})}},
+{id:'E5_Areas',d:'Área del círculo, cuadrado, rectángulo, pentágono y triángulo.',f:()=>{ui(dos('Medida A (lado, radio o base)','Medida B (altura)')+`<div class="row">${B(Object.keys(AR))}</div>`+OUT);bt(k=>{const a=parseFloat(q('#a').value),b=parseFloat(q('#b').value);if(!(a>0)||(/Rect|Tri/.test(k)&&!(b>0)))return msg('Escribe medidas mayores a 0.');RI(shp(k),`Área del ${k.toLowerCase()}: ${f2(AR[k](a,b))} u²`)})}},
+{id:'E6_CheckBox',d:'Opera dos números según las casillas que marques.',f:()=>{ui(dos()+`<div class="row">${CK(['Suma','Resta','Multiplicación','División'])}</div><button class="btn" id="go">Calcular</button>`+OUT);on('go',()=>{const n=nums();if(!n)return;const[a,b]=n,c=$$('input:checked',X).map(i=>i.value);if(!c.length)return msg('Marca al menos una operación.');const f={Suma:a+b,Resta:a-b,Multiplicación:a*b,División:b?a/b:'indefinida'};R(c.map(k=>k+': '+(typeof f[k]=='number'?f2(f[k]):f[k])).join('   '))})}},
+{id:'E7_CheckConteo',d:'Cuenta los alumnos por carrera (ISC, II, IE, IDA) con casillas.',f:()=>{const n={ISC:0,II:0,IE:0,IDA:0};ui(`<div class="row">${CK(Object.keys(n))}</div><button class="btn" id="go">Agregar alumno</button><button class="btn ghost" id="rs">Reiniciar</button><div class="tiles" id="t"></div>`);const p=()=>q('#t').innerHTML=Object.entries(n).map(([k,v])=>`<div class="tile"><b>${v}</b>${k}</div>`).join('')+`<div class="tile"><b>${Object.values(n).reduce((a,v)=>a+v,0)}</b>Total</div>`;p();on('go',()=>{const c=$$('input:checked',X);if(!c.length)return msg('Marca una carrera.');c.forEach(i=>n[i.value]++);p()});on('rs',()=>{for(const k in n)n[k]=0;$$('input',X).forEach(i=>i.checked=0);p()})}},
+{id:'E8_Almacenes',d:'Método de pago con botones de opción (JRadioButton).',f:pagoUI(0)},
+{id:'E9_Almacenes2',d:'El mismo método de pago con una lista desplegable.',f:pagoUI(1)},
+{id:'E10_Figuras',d:'Áreas eligiendo la figura en una lista. Con Base y Borrar.',f:()=>{ui(`<label>Figura<select id="s">${OPT(Object.keys(AR))}</select></label>`+dos('Base / lado / radio','Altura')+'<button class="btn" id="go">Calcular</button><button class="btn ghost" id="bo">Borrar</button>'+OUT);on('go',()=>{const a=parseFloat(q('#a').value),b=parseFloat(q('#b').value),k=q('#s').value;if(!(a>0)||(/Rect|Tri/.test(k)&&!(b>0)))return msg('Escribe medidas mayores a 0.');RI(shp(k),`${k}: ${f2(AR[k](a,b))} u²`)});on('bo',()=>{$$('input',X).forEach(i=>i.value='');q('#s').onchange()});q('#s').onchange=()=>RI(shp(q('#s').value),'Figura: '+q('#s').value);q('#s').onchange()}},
+{id:'E11_InterruptorLuz',d:'Foco con un botón de alternar y un letrero de estado.',f:foco(0)},
+{id:'E12_InterruptorLuz2',d:'El interruptor, pero con la imagen del foco.',f:foco(1)},
+{id:'E13_AireAcondicionado',d:'Aire acondicionado que se enciende y muestra 22 °C.',f:()=>{ui('<div class="ac"><div class="fan">❄️</div><span id="d">--</span><small id="m">Apagado</small></div><button class="btn" id="t">Encender</button>');let s=0;on('t',()=>{s=!s;q('#d').textContent=s?'22 °C':'--';q('#m').textContent=s?'Enfriando…':'Apagado';q('#t').textContent=s?'Apagar':'Encender';q('.ac').classList.toggle('lit',s)})}},
+{id:'E14_Scroll',d:'Texto largo dentro de un JScrollPane con barra de desplazamiento.',f:()=>ui(`<div class="scr2">${Array(14).fill('<p>Un <b>JScrollPane</b> envuelve un componente más grande que su ventana y agrega barras de desplazamiento. Este texto es largo a propósito: desliza para leerlo completo.</p>').join('')}</div>`)},
+{id:'E15_BarraCarga',d:'Barra lenta que simula subir archivos, con mensajes por etapa.',f:barra(90,[[0,'📁 Preparando archivos…'],[25,'📄 Subiendo documentos…'],[60,'🖼️ Subiendo imágenes…'],[90,'🔍 Verificando…'],[100,'✅ ¡Archivos subidos!']])},
+{id:'E16_BarraCarga2',d:'Barra rápida que simula un escaneo del sistema.',f:barra(30,[[0,'🛡️ Iniciando escaneo…'],[30,'🧠 Revisando memoria…'],[65,'📂 Revisando archivos…'],[100,'✅ Sistema limpio.']])},
+{id:'E17_BarraImagen',d:'Una moto avanza junto con la barra de progreso.',f:barra(50,[[0,'Arrancando motor…'],[40,'En carretera…'],[85,'Casi llegamos…'],[100,'¡Llegó a la meta!']],1)},
+{id:'E18_JSpinnerVenta',d:'Total a pagar eligiendo la cantidad con un spinner.',f:()=>{const P={Cuaderno:35,Pluma:12,Mochila:480,Calculadora:150},I={Cuaderno:'📓',Pluma:'🖊️',Mochila:'🎒',Calculadora:'🧮'};ui(`<div class="row"><label>Producto<select id="s">${OPT(Object.keys(P))}</select></label><label>Cantidad<input id="n" type="number" min="1" value="1"></label></div>`+OUT);const u=()=>{const n=Math.max(1,parseInt(q('#n').value)||1),p=P[q('#s').value];RI(I[q('#s').value].repeat(Math.min(n,10)),`${n} × $${p} = $${f2(n*p)}`)};q('#s').onchange=q('#n').oninput=u;u()}},
+{id:'E19_JSpinnerEdades',d:'Elige la edad y dice si eres menor, mayor de edad o adulto mayor.',f:()=>{ui('<label>Edad<input id="n" type="number" min="0" max="120" value="18"></label>'+OUT);const u=()=>{const n=+q('#n').value;const bad=isNaN(n)||n<0||n>120;RI(bad?'❓':n<18?'🧒':n<60?'🧑':'🧓',bad?'Edad no válida':n<18?'Eres menor de edad':n<60?'Eres mayor de edad':'Eres adulto mayor')};q('#n').oninput=u;u()}},
+{id:'E20_ListaProductos',d:'Lista de compras con botones Agregar y Eliminar.',f:()=>lista([['Producto','text']],v=>'🛒 '+v[0])},
+{id:'E21_ListaAlumnos',d:'Lista de alumnos con Agregar, Eliminar y el total.',f:()=>lista([['Alumno','text']],v=>'🎓 '+v[0])},
+{id:'E22_ListaAlum',d:'Alumnos con número de control y promedio; borra a los menores de 7.',f:()=>lista([['Alumno','text'],['Núm. de control','text'],['Promedio (0-10)','number']],v=>`${+v[2]>=7?'✅':'⚠️'} ${v[0]} · ${v[1]} · ${v[2]}`,{ok:v=>(+v[2]<0||+v[2]>10)&&'El promedio va de 0 a 10.',x:['Borrar menores de 7',d=>d.filter(v=>+v[2]>=7)]})},
+{id:'E23_TablaSupermercado',d:'Tabla del supermercado con importe y total a pagar.',f:()=>tabla([['Producto','text'],['Precio','number'],['Cantidad','number']],{calc:['Importe',v=>'$'+f2(v[1]*v[2])],tot:1,seed:[['Leche',28,2],['Pan',45,1]]})},
+{id:'E23b_CodigoMaestra',d:'Versión con el código de la maestra. No calcula importe ni total.',f:()=>tabla([['Producto','text'],['Precio','number'],['Cantidad','number']],{seed:[['Leche',28,2]],note:'Columnas definidas en el diseñador; cada botón usa getModel().'})},
+{id:'E24_TablaAlumnos',d:'Tabla de alumnos con calificación y estado. Agregar, Modificar y Eliminar.',f:()=>tabla([['Alumno','text'],['Calificación (0-100)','number']],{calc:['Estado',v=>+v[1]>=70?'✅ Aprobado':'❌ Reprobado'],ok:v=>(+v[1]<0||+v[1]>100)&&'La calificación va de 0 a 100.',seed:[['Ana',92],['Luis',65]]})}
+];
+$('#sel').innerHTML='<option value="">— Elige un ejercicio —</option>'+EX.map(e=>`<option value="${e.id}">${e.id}</option>`).join('');
+$('#sel').onchange=()=>{const e=EX.find(x=>x.id==$('#sel').value);$('#ds').textContent=e?e.d:'Elige uno de la lista para ver de qué trata.'};
+$('#ab').onclick=()=>{const e=EX.find(x=>x.id==$('#sel').value);if(!e)return msg('Elige un ejercicio de la lista.');X=$('#xb');X.innerHTML='';$('#xt').textContent=e.id;const k=EX.indexOf(e),P=PAL[k%6];$('.jf').style.cssText=`--c1:${P[0]};--c2:${P[1]};--ink:${P[2]}`;$('#fl').innerHTML=flora(k%6,P[1],k+3);$('#xo').textContent='run: '+e.id+'  ·  '+P[3]+' / '+P[4]+'  ·  BUILD SUCCESSFUL';e.f();go('ex',e.id)};
+$('#xc').onclick=()=>{clearInterval(T);go('e2','E2_Pantalla')};
+$('#bl').onclick=()=>{$('#u').value=$('#p').value='';go('login','E25_Usuario')};
+$('#lg').onsubmit=e=>{e.preventDefault();if($('#u').value.trim()=='Ariella'&&$('#p').value=='tap2026')go('e2','E2_Pantalla');else{msg('Usuario o contraseña incorrectos.');$('#p').value=''}};
+go('login','E25_Usuario');
+</script></body></html>
